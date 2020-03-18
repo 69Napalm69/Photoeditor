@@ -946,6 +946,5 @@ namespace Fotofilter
         //select specific pixels depending on a shape like a circle and not a square
         #endregion
 
-
     }
 }
