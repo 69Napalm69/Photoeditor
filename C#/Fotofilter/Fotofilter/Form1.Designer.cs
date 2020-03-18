@@ -84,6 +84,7 @@
             this.pbBild.Size = new System.Drawing.Size(246, 112);
             this.pbBild.TabIndex = 1;
             this.pbBild.TabStop = false;
+            this.pbBild.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DrawPaint);
             // 
             // menuStrip1
             // 
@@ -418,7 +419,7 @@
             this.drawColorSelection.Name = "drawColorSelection";
             this.drawColorSelection.Size = new System.Drawing.Size(180, 22);
             this.drawColorSelection.Text = "Select color...";
-            this.drawColorSelection.Click += new System.EventHandler(this.drawSelectColor);
+            this.drawColorSelection.Click += new System.EventHandler(this.DrawSelectColor);
             // 
             // aboutToolStripMenuItem
             // 

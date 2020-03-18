@@ -43,8 +43,11 @@ namespace Fotofilter
                     logo.SetPixel(x, y, brushColor);
                 }
             }
-
             drawColorSelection.Image = logo;
+
+
+
+
         }
 
         #region General functions
@@ -197,6 +200,11 @@ namespace Fotofilter
 
         }
 
+        private int Clamp(int min, int value, int max)
+        {
+            return Math.Min(Math.Max(value, min), max);
+        }
+
         private void Scale(object sender, EventArgs e)
         {
 
@@ -215,7 +223,7 @@ namespace Fotofilter
                     break;
             }
 
-            
+
 
         }
 
@@ -919,7 +927,15 @@ namespace Fotofilter
         #endregion
 
         #region Drawing tools
-        private void drawSelectColor(object sender, EventArgs e)
+
+        //Paint brush pseudo code
+        //when mouse is down on the image then set the pixel, if it isn't already, to the brush color and don't update it if it isn't on a different pixel
+
+
+        //to learn:
+        //select specific pixels depending on a shape like a circle and not a square
+
+        private void DrawSelectColor(object sender, EventArgs e)
         {
             if (colorPicker.ShowDialog() == DialogResult.OK)
             {
@@ -943,13 +959,25 @@ namespace Fotofilter
             }
         }
 
-        //Paint brush pseudo code
-        //when mouse is down on the image then set the pixel, if it isn't already, to the brush color and don't update it if it isn't on a different pixel
+        private void DrawPaint(object sender, MouseEventArgs e)
+        {
+            //MessageBox.Show(mouse.X.ToString() + " " + mouse.Y.ToString(), "mouse coords", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-        //to learn:
-        //select specific pixels depending on a shape like a circle and not a square
+
+            int brushSize = 10;
+
+            Bitmap image = GetCurrentImage();
+            for (int y = 0; y < brushSize; y++)
+            {
+                for (int x = 0; x < brushSize; x++)
+                {
+                        image.SetPixel(Clamp(0 , e.X - brushSize / 2 + x,  image.Width-1), Clamp(0, e.Y - brushSize / 2 + y, image.Height - 1), brushColor);
+                }
+            }
+
+            pbBild.Image = image;
+        }
         #endregion
-
     }
 }
