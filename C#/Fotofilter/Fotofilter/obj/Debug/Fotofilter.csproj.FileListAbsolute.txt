@@ -1,0 +1,11 @@
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\obj\Debug\Fotofilter.csprojAssemblyReference.cache
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\obj\Debug\Fotofilter.Properties.Resources.resources
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\obj\Debug\Fotofilter.csproj.GenerateResource.cache
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\bin\Debug\Fotofilter.exe.config
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\bin\Debug\Fotofilter.exe
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\bin\Debug\Fotofilter.pdb
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\obj\Debug\Fotofilter.exe
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\obj\Debug\Fotofilter.pdb
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\obj\Debug\Fotofilter.mainForm.resources
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\bin\Debug\ColorMine.dll
+C:\Users\gabriel.mattsson\source\repos\Fotofilter\Fotofilter\obj\Debug\Fotofilter.csproj.CopyComplete
