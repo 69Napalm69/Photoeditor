@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace Fotofilter
 {
@@ -16,14 +15,16 @@ namespace Fotofilter
     {
         //saves the original image as a safestate
         private static Bitmap OriginalImage;
+
         //the cache for edits
         public static List<Bitmap> editHistory = new List<Bitmap>();
         public static int currentImage = 0;
+
         //for checking if you saved the image before closing so it doesn't get lost
         private bool hasSaved = true;
-        //the standard brush for the drawing tool
-        public Color brushColor = Color.Black;
 
+        //the standard brush color for the drawing tool
+        public Color brushColor = Color.Black;
 
 
         public mainForm()
@@ -117,7 +118,7 @@ namespace Fotofilter
                 //https://stackoverflow.com/questions/11055258/how-to-use-savefiledialog-for-saving-images-in-c
 
 
-                ImageFormat format = ImageFormat.Bmp;
+                ImageFormat format;
                 //gets the file format you want to save to and then sets that format
                 string ext = System.IO.Path.GetExtension(saveImage.FileName).ToLower();
                 switch (ext)
@@ -140,6 +141,10 @@ namespace Fotofilter
 
                     case ".tiff":
                         format = ImageFormat.Tiff;
+                        break;
+
+                    default:
+                        format = ImageFormat.Bmp;
                         break;
                 }
 
@@ -914,7 +919,7 @@ namespace Fotofilter
         #endregion
 
         #region Drawing tools
-        private void drawColorSelection_Click(object sender, EventArgs e)
+        private void drawSelectColor(object sender, EventArgs e)
         {
             if (colorPicker.ShowDialog() == DialogResult.OK)
             {

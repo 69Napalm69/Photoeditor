@@ -212,7 +212,7 @@
             this.shadeSortToolStripMenuItem,
             this.colorSortToolStripMenuItem1});
             this.colorSortToolStripMenuItem.Name = "colorSortToolStripMenuItem";
-            this.colorSortToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorSortToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.colorSortToolStripMenuItem.Text = "Sort";
             this.colorSortToolStripMenuItem.ToolTipText = "Sorts all colors by their shade from brightest to darkest";
             // 
@@ -233,7 +233,7 @@
             // grainToolStripMenuItem
             // 
             this.grainToolStripMenuItem.Name = "grainToolStripMenuItem";
-            this.grainToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grainToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.grainToolStripMenuItem.Text = "Demon grain ";
             this.grainToolStripMenuItem.ToolTipText = "Gives the picture a demonic grainy look";
             this.grainToolStripMenuItem.Click += new System.EventHandler(this.DemonGrainImageFilter);
@@ -246,7 +246,7 @@
             this.RemoveBlue,
             this.RemoveYellow});
             this.colorFitlerToolStripMenuItem.Name = "colorFitlerToolStripMenuItem";
-            this.colorFitlerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorFitlerToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.colorFitlerToolStripMenuItem.Text = "Color Remove";
             this.colorFitlerToolStripMenuItem.ToolTipText = "Removes one of the color channels";
             // 
@@ -281,7 +281,7 @@
             // experimentToolStripMenuItem
             // 
             this.experimentToolStripMenuItem.Name = "experimentToolStripMenuItem";
-            this.experimentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.experimentToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.experimentToolStripMenuItem.Text = "Absolute RGB";
             this.experimentToolStripMenuItem.ToolTipText = "Makes the colors their absolute color";
             this.experimentToolStripMenuItem.Click += new System.EventHandler(this.AbsoluteColorFilter);
@@ -290,7 +290,7 @@
             // 
             this.invertToolStripMenuItem.Name = "invertToolStripMenuItem";
             this.invertToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.invertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invertToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.invertToolStripMenuItem.Text = "Invert";
             this.invertToolStripMenuItem.ToolTipText = "Inverts colors";
             this.invertToolStripMenuItem.Click += new System.EventHandler(this.InvertColorFilter);
@@ -302,7 +302,7 @@
             this.greenToolStripMenuItem2,
             this.blueToolStripMenuItem3});
             this.colorReplaceToolStripMenuItem.Name = "colorReplaceToolStripMenuItem";
-            this.colorReplaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorReplaceToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.colorReplaceToolStripMenuItem.Text = "Color Replace";
             this.colorReplaceToolStripMenuItem.ToolTipText = "Replaces every instance of a specific shade with another";
             // 
@@ -379,7 +379,7 @@
             // monochromeToolStripMenuItem
             // 
             this.monochromeToolStripMenuItem.Name = "monochromeToolStripMenuItem";
-            this.monochromeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.monochromeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.monochromeToolStripMenuItem.Text = "Monochrome";
             this.monochromeToolStripMenuItem.ToolTipText = "Turns the image black and white";
             this.monochromeToolStripMenuItem.Click += new System.EventHandler(this.MonochromeColorFilter);
@@ -387,7 +387,7 @@
             // grainToolStripMenuItem1
             // 
             this.grainToolStripMenuItem1.Name = "grainToolStripMenuItem1";
-            this.grainToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.grainToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.grainToolStripMenuItem1.Text = "Grain";
             this.grainToolStripMenuItem1.ToolTipText = "Applies a grainy effect to the image";
             this.grainToolStripMenuItem1.Click += new System.EventHandler(this.GrainImageFilter);
@@ -395,13 +395,13 @@
             // brightnessToolStripMenuItem
             // 
             this.brightnessToolStripMenuItem.Name = "brightnessToolStripMenuItem";
-            this.brightnessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.brightnessToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.brightnessToolStripMenuItem.Text = "Brightness(WIP)";
             // 
             // blurToolStripMenuItem
             // 
             this.blurToolStripMenuItem.Name = "blurToolStripMenuItem";
-            this.blurToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.blurToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.blurToolStripMenuItem.Text = "Blur";
             this.blurToolStripMenuItem.Click += new System.EventHandler(this.BlurImageFilter);
             // 
@@ -418,7 +418,7 @@
             this.drawColorSelection.Name = "drawColorSelection";
             this.drawColorSelection.Size = new System.Drawing.Size(180, 22);
             this.drawColorSelection.Text = "Select color...";
-            this.drawColorSelection.Click += new System.EventHandler(this.drawColorSelection_Click);
+            this.drawColorSelection.Click += new System.EventHandler(this.drawSelectColor);
             // 
             // aboutToolStripMenuItem
             // 
