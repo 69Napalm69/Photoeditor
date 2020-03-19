@@ -1,4 +1,6 @@
-﻿namespace Fotofilter
+﻿
+
+namespace Fotofilter
 {
     partial class mainForm
     {
@@ -33,7 +35,6 @@
             this.arkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.öppnaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sparaBildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ångraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.görOmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.angraAlltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storlekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +66,7 @@
             this.monochromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grainToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.brightnessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawColorSelection = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,6 +74,11 @@
             this.openImage = new System.Windows.Forms.OpenFileDialog();
             this.saveImage = new System.Windows.Forms.SaveFileDialog();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
+            this.ångraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.pbBild)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -106,10 +113,13 @@
             this.arkivToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.öppnaToolStripMenuItem,
             this.sparaBildToolStripMenuItem,
+            this.toolStripSeparator1,
             this.ångraToolStripMenuItem,
             this.görOmToolStripMenuItem,
             this.angraAlltToolStripMenuItem,
+            this.toolStripSeparator2,
             this.storlekToolStripMenuItem,
+            this.toolStripSeparator3,
             this.avslutaToolStripMenuItem});
             this.arkivToolStripMenuItem.Name = "arkivToolStripMenuItem";
             this.arkivToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -131,14 +141,6 @@
             this.sparaBildToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.sparaBildToolStripMenuItem.Text = "Save image as...";
             this.sparaBildToolStripMenuItem.Click += new System.EventHandler(this.ImageSaveAs);
-            // 
-            // ångraToolStripMenuItem
-            // 
-            this.ångraToolStripMenuItem.Name = "ångraToolStripMenuItem";
-            this.ångraToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.ångraToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.ångraToolStripMenuItem.Text = "Undo";
-            this.ångraToolStripMenuItem.Click += new System.EventHandler(this.Undo);
             // 
             // görOmToolStripMenuItem
             // 
@@ -193,15 +195,16 @@
             // filterToolStripMenuItem
             // 
             this.filterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.colorSortToolStripMenuItem,
-            this.grainToolStripMenuItem,
             this.colorFitlerToolStripMenuItem,
             this.experimentToolStripMenuItem,
-            this.invertToolStripMenuItem,
             this.colorReplaceToolStripMenuItem,
+            this.invertToolStripMenuItem,
             this.monochromeToolStripMenuItem,
-            this.grainToolStripMenuItem1,
             this.brightnessToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.grainToolStripMenuItem1,
+            this.colorSortToolStripMenuItem,
+            this.grainToolStripMenuItem,
             this.blurToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
@@ -395,9 +398,17 @@
             // 
             // brightnessToolStripMenuItem
             // 
+            this.brightnessToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.trackBarToolStripMenuItem});
             this.brightnessToolStripMenuItem.Name = "brightnessToolStripMenuItem";
             this.brightnessToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.brightnessToolStripMenuItem.Text = "Brightness(WIP)";
+            // 
+            // trackBarToolStripMenuItem
+            // 
+            this.trackBarToolStripMenuItem.Name = "trackBarToolStripMenuItem";
+            this.trackBarToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.trackBarToolStripMenuItem.Text = "TrackBar";
             // 
             // blurToolStripMenuItem
             // 
@@ -431,6 +442,34 @@
             // saveImage
             // 
             this.saveImage.RestoreDirectory = true;
+            // 
+            // ångraToolStripMenuItem
+            // 
+            this.ångraToolStripMenuItem.Name = "ångraToolStripMenuItem";
+            this.ångraToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.ångraToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.ångraToolStripMenuItem.Text = "Undo";
+            this.ångraToolStripMenuItem.Click += new System.EventHandler(this.Undo);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(226, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(226, 6);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // mainForm
             // 
@@ -487,7 +526,6 @@
         private System.Windows.Forms.ToolStripMenuItem grainToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem shadeSortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem colorSortToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ångraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem storlekToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem In;
         private System.Windows.Forms.ToolStripMenuItem Out;
@@ -498,6 +536,12 @@
         private System.Windows.Forms.ColorDialog colorPicker;
         private System.Windows.Forms.ToolStripMenuItem drawToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem drawColorSelection;
+        private System.Windows.Forms.ToolStripMenuItem trackBarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem ångraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

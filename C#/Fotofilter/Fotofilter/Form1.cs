@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace Fotofilter
 {
@@ -26,7 +27,6 @@ namespace Fotofilter
         //the standard brush color for the drawing tool
         public Color brushColor = Color.Black;
 
-
         public mainForm()
         {
             InitializeComponent();
@@ -35,6 +35,7 @@ namespace Fotofilter
             openImage.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveImage.InitialDirectory = openImage.InitialDirectory;
 
+            //draws the color picture for the color select
             Bitmap logo = new Bitmap(16, 16);
             for (int y = 0; y < logo.Height; y++)
             {
@@ -44,9 +45,6 @@ namespace Fotofilter
                 }
             }
             drawColorSelection.Image = logo;
-
-
-
 
         }
 
@@ -229,7 +227,7 @@ namespace Fotofilter
 
         #endregion
 
-        #region Filter image
+        #region Manipulate image
 
         private void DemonGrainImageFilter(object sender, EventArgs e)
         {
