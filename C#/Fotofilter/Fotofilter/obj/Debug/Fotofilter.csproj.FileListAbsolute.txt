@@ -1,0 +1,11 @@
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\bin\Debug\Fotofilter.exe.config
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\bin\Debug\Fotofilter.exe
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\bin\Debug\Fotofilter.pdb
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\bin\Debug\ColorMine.dll
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.csprojAssemblyReference.cache
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.mainForm.resources
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.Properties.Resources.resources
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.csproj.GenerateResource.cache
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.csproj.CopyComplete
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.exe
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.pdb

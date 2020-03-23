@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
+using System.Windows.Forms.Design;
 
 namespace Fotofilter
 {
@@ -16,15 +16,16 @@ namespace Fotofilter
     {
         //saves the original image as a safestate
         private static Bitmap OriginalImage;
+
         //the cache for edits
         public static List<Bitmap> editHistory = new List<Bitmap>();
         public static int currentImage = 0;
+
         //for checking if you saved the image before closing so it doesn't get lost
         private bool hasSaved = true;
-        //the standard brush for the drawing tool
+
+        //the standard brush color for the drawing tool
         public Color brushColor = Color.Black;
-
-
 
         public mainForm()
         {
@@ -34,6 +35,7 @@ namespace Fotofilter
             openImage.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveImage.InitialDirectory = openImage.InitialDirectory;
 
+            //draws the color picture for the color select
             Bitmap logo = new Bitmap(16, 16);
             for (int y = 0; y < logo.Height; y++)
             {
@@ -42,8 +44,8 @@ namespace Fotofilter
                     logo.SetPixel(x, y, brushColor);
                 }
             }
-
             drawColorSelection.Image = logo;
+
         }
 
         #region General functions
@@ -117,7 +119,7 @@ namespace Fotofilter
                 //https://stackoverflow.com/questions/11055258/how-to-use-savefiledialog-for-saving-images-in-c
 
 
-                ImageFormat format = ImageFormat.Bmp;
+                ImageFormat format;
                 //gets the file format you want to save to and then sets that format
                 string ext = System.IO.Path.GetExtension(saveImage.FileName).ToLower();
                 switch (ext)
@@ -140,6 +142,10 @@ namespace Fotofilter
 
                     case ".tiff":
                         format = ImageFormat.Tiff;
+                        break;
+
+                    default:
+                        format = ImageFormat.Bmp;
                         break;
                 }
 
@@ -192,6 +198,11 @@ namespace Fotofilter
 
         }
 
+        private int Clamp(int min, int value, int max)
+        {
+            return Math.Min(Math.Max(value, min), max);
+        }
+
         private void Scale(object sender, EventArgs e)
         {
 
@@ -210,13 +221,13 @@ namespace Fotofilter
                     break;
             }
 
-            
+
 
         }
 
         #endregion
 
-        #region Filter image
+        #region Manipulate image
 
         private void DemonGrainImageFilter(object sender, EventArgs e)
         {
@@ -914,7 +925,15 @@ namespace Fotofilter
         #endregion
 
         #region Drawing tools
-        private void drawColorSelection_Click(object sender, EventArgs e)
+
+        //Paint brush pseudo code
+        //when mouse is down on the image then set the pixel, if it isn't already, to the brush color and don't update it if it isn't on a different pixel
+
+
+        //to learn:
+        //select specific pixels depending on a shape like a circle and not a square
+
+        private void DrawSelectColor(object sender, EventArgs e)
         {
             if (colorPicker.ShowDialog() == DialogResult.OK)
             {
@@ -938,13 +957,25 @@ namespace Fotofilter
             }
         }
 
-        //Paint brush pseudo code
-        //when mouse is down on the image then set the pixel, if it isn't already, to the brush color and don't update it if it isn't on a different pixel
+        private void DrawPaint(object sender, MouseEventArgs e)
+        {
+            //MessageBox.Show(mouse.X.ToString() + " " + mouse.Y.ToString(), "mouse coords", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-        //to learn:
-        //select specific pixels depending on a shape like a circle and not a square
+
+            int brushSize = 10;
+
+            Bitmap image = GetCurrentImage();
+            for (int y = 0; y < brushSize; y++)
+            {
+                for (int x = 0; x < brushSize; x++)
+                {
+                        image.SetPixel(Clamp(0 , e.X - brushSize / 2 + x,  image.Width-1), Clamp(0, e.Y - brushSize / 2 + y, image.Height - 1), brushColor);
+                }
+            }
+
+            pbBild.Image = image;
+        }
         #endregion
-
     }
 }
