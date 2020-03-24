@@ -35,24 +35,23 @@ namespace Fotofilter
             this.arkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.öppnaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sparaBildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ångraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.görOmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.angraAlltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.storlekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.In = new System.Windows.Forms.ToolStripMenuItem();
             this.Out = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.avslutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.shadeSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorSortToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.grainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorFitlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveRed = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveGreen = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveBlue = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveYellow = new System.Windows.Forms.ToolStripMenuItem();
             this.experimentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.invertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.RedToGreen = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,22 +62,24 @@ namespace Fotofilter
             this.blueToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.BlueToRed = new System.Windows.Forms.ToolStripMenuItem();
             this.BlueToGreen = new System.Windows.Forms.ToolStripMenuItem();
+            this.invertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monochromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grainToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.brightnessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.grainToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shadeSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorSortToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.grainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureMergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawColorSelection = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawToolStripMenuItem1 = new System.Windows.Forms.ToolStripTextBox();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openImage = new System.Windows.Forms.OpenFileDialog();
             this.saveImage = new System.Windows.Forms.SaveFileDialog();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
-            this.ångraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.pbBild)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -142,6 +143,19 @@ namespace Fotofilter
             this.sparaBildToolStripMenuItem.Text = "Save image as...";
             this.sparaBildToolStripMenuItem.Click += new System.EventHandler(this.ImageSaveAs);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
+            // 
+            // ångraToolStripMenuItem
+            // 
+            this.ångraToolStripMenuItem.Name = "ångraToolStripMenuItem";
+            this.ångraToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.ångraToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.ångraToolStripMenuItem.Text = "Undo";
+            this.ångraToolStripMenuItem.Click += new System.EventHandler(this.Undo);
+            // 
             // görOmToolStripMenuItem
             // 
             this.görOmToolStripMenuItem.Name = "görOmToolStripMenuItem";
@@ -159,6 +173,11 @@ namespace Fotofilter
             this.angraAlltToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.angraAlltToolStripMenuItem.Text = "Undo all";
             this.angraAlltToolStripMenuItem.Click += new System.EventHandler(this.ResetImage);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(226, 6);
             // 
             // storlekToolStripMenuItem
             // 
@@ -185,6 +204,11 @@ namespace Fotofilter
             this.Out.Text = "Zoom out";
             this.Out.Click += new System.EventHandler(this.Scale);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(226, 6);
+            // 
             // avslutaToolStripMenuItem
             // 
             this.avslutaToolStripMenuItem.Name = "avslutaToolStripMenuItem";
@@ -205,42 +229,11 @@ namespace Fotofilter
             this.grainToolStripMenuItem1,
             this.colorSortToolStripMenuItem,
             this.grainToolStripMenuItem,
-            this.blurToolStripMenuItem});
+            this.blurToolStripMenuItem,
+            this.pictureMergeToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.filterToolStripMenuItem.Text = "Filter";
-            // 
-            // colorSortToolStripMenuItem
-            // 
-            this.colorSortToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.shadeSortToolStripMenuItem,
-            this.colorSortToolStripMenuItem1});
-            this.colorSortToolStripMenuItem.Name = "colorSortToolStripMenuItem";
-            this.colorSortToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.colorSortToolStripMenuItem.Text = "Sort";
-            this.colorSortToolStripMenuItem.ToolTipText = "Sorts all colors by their shade from brightest to darkest";
-            // 
-            // shadeSortToolStripMenuItem
-            // 
-            this.shadeSortToolStripMenuItem.Name = "shadeSortToolStripMenuItem";
-            this.shadeSortToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.shadeSortToolStripMenuItem.Text = "Shade sort";
-            this.shadeSortToolStripMenuItem.Click += new System.EventHandler(this.ShadeSortFilter);
-            // 
-            // colorSortToolStripMenuItem1
-            // 
-            this.colorSortToolStripMenuItem1.Name = "colorSortToolStripMenuItem1";
-            this.colorSortToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
-            this.colorSortToolStripMenuItem1.Text = "Color sort";
-            this.colorSortToolStripMenuItem1.Click += new System.EventHandler(this.ColorSortFilter);
-            // 
-            // grainToolStripMenuItem
-            // 
-            this.grainToolStripMenuItem.Name = "grainToolStripMenuItem";
-            this.grainToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.grainToolStripMenuItem.Text = "Demon grain ";
-            this.grainToolStripMenuItem.ToolTipText = "Gives the picture a demonic grainy look";
-            this.grainToolStripMenuItem.Click += new System.EventHandler(this.DemonGrainImageFilter);
             // 
             // colorFitlerToolStripMenuItem
             // 
@@ -250,7 +243,7 @@ namespace Fotofilter
             this.RemoveBlue,
             this.RemoveYellow});
             this.colorFitlerToolStripMenuItem.Name = "colorFitlerToolStripMenuItem";
-            this.colorFitlerToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.colorFitlerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.colorFitlerToolStripMenuItem.Text = "Color Remove";
             this.colorFitlerToolStripMenuItem.ToolTipText = "Removes one of the color channels";
             // 
@@ -285,19 +278,10 @@ namespace Fotofilter
             // experimentToolStripMenuItem
             // 
             this.experimentToolStripMenuItem.Name = "experimentToolStripMenuItem";
-            this.experimentToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.experimentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.experimentToolStripMenuItem.Text = "Absolute RGB";
             this.experimentToolStripMenuItem.ToolTipText = "Makes the colors their absolute color";
             this.experimentToolStripMenuItem.Click += new System.EventHandler(this.AbsoluteColorFilter);
-            // 
-            // invertToolStripMenuItem
-            // 
-            this.invertToolStripMenuItem.Name = "invertToolStripMenuItem";
-            this.invertToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.invertToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.invertToolStripMenuItem.Text = "Invert";
-            this.invertToolStripMenuItem.ToolTipText = "Inverts colors";
-            this.invertToolStripMenuItem.Click += new System.EventHandler(this.InvertColorFilter);
             // 
             // colorReplaceToolStripMenuItem
             // 
@@ -306,7 +290,7 @@ namespace Fotofilter
             this.greenToolStripMenuItem2,
             this.blueToolStripMenuItem3});
             this.colorReplaceToolStripMenuItem.Name = "colorReplaceToolStripMenuItem";
-            this.colorReplaceToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.colorReplaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.colorReplaceToolStripMenuItem.Text = "Color Replace";
             this.colorReplaceToolStripMenuItem.ToolTipText = "Replaces every instance of a specific shade with another";
             // 
@@ -380,47 +364,94 @@ namespace Fotofilter
             this.BlueToGreen.Text = "Green";
             this.BlueToGreen.Click += new System.EventHandler(this.ColorSet);
             // 
+            // invertToolStripMenuItem
+            // 
+            this.invertToolStripMenuItem.Name = "invertToolStripMenuItem";
+            this.invertToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.invertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invertToolStripMenuItem.Text = "Invert";
+            this.invertToolStripMenuItem.ToolTipText = "Inverts colors";
+            this.invertToolStripMenuItem.Click += new System.EventHandler(this.InvertColorFilter);
+            // 
             // monochromeToolStripMenuItem
             // 
             this.monochromeToolStripMenuItem.Name = "monochromeToolStripMenuItem";
-            this.monochromeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.monochromeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.monochromeToolStripMenuItem.Text = "Monochrome";
             this.monochromeToolStripMenuItem.ToolTipText = "Turns the image black and white";
             this.monochromeToolStripMenuItem.Click += new System.EventHandler(this.MonochromeColorFilter);
             // 
+            // brightnessToolStripMenuItem
+            // 
+            this.brightnessToolStripMenuItem.Name = "brightnessToolStripMenuItem";
+            this.brightnessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.brightnessToolStripMenuItem.Text = "Brightness...";
+            this.brightnessToolStripMenuItem.Click += new System.EventHandler(this.ChangeBrightness);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
             // grainToolStripMenuItem1
             // 
             this.grainToolStripMenuItem1.Name = "grainToolStripMenuItem1";
-            this.grainToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.grainToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.grainToolStripMenuItem1.Text = "Grain";
             this.grainToolStripMenuItem1.ToolTipText = "Applies a grainy effect to the image";
             this.grainToolStripMenuItem1.Click += new System.EventHandler(this.GrainImageFilter);
             // 
-            // brightnessToolStripMenuItem
+            // colorSortToolStripMenuItem
             // 
-            this.brightnessToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.trackBarToolStripMenuItem});
-            this.brightnessToolStripMenuItem.Name = "brightnessToolStripMenuItem";
-            this.brightnessToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.brightnessToolStripMenuItem.Text = "Brightness(WIP)";
+            this.colorSortToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.shadeSortToolStripMenuItem,
+            this.colorSortToolStripMenuItem1});
+            this.colorSortToolStripMenuItem.Name = "colorSortToolStripMenuItem";
+            this.colorSortToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorSortToolStripMenuItem.Text = "Sort";
+            this.colorSortToolStripMenuItem.ToolTipText = "Sorts all colors by their shade from brightest to darkest";
             // 
-            // trackBarToolStripMenuItem
+            // shadeSortToolStripMenuItem
             // 
-            this.trackBarToolStripMenuItem.Name = "trackBarToolStripMenuItem";
-            this.trackBarToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.trackBarToolStripMenuItem.Text = "TrackBar";
+            this.shadeSortToolStripMenuItem.Name = "shadeSortToolStripMenuItem";
+            this.shadeSortToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.shadeSortToolStripMenuItem.Text = "Shade sort";
+            this.shadeSortToolStripMenuItem.Click += new System.EventHandler(this.ShadeSortFilter);
+            // 
+            // colorSortToolStripMenuItem1
+            // 
+            this.colorSortToolStripMenuItem1.Name = "colorSortToolStripMenuItem1";
+            this.colorSortToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
+            this.colorSortToolStripMenuItem1.Text = "Color sort";
+            this.colorSortToolStripMenuItem1.Click += new System.EventHandler(this.ColorSortFilter);
+            // 
+            // grainToolStripMenuItem
+            // 
+            this.grainToolStripMenuItem.Name = "grainToolStripMenuItem";
+            this.grainToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grainToolStripMenuItem.Text = "Demon Grain ";
+            this.grainToolStripMenuItem.ToolTipText = "Gives the picture a demonic grainy look";
+            this.grainToolStripMenuItem.Click += new System.EventHandler(this.DemonGrainImageFilter);
             // 
             // blurToolStripMenuItem
             // 
             this.blurToolStripMenuItem.Name = "blurToolStripMenuItem";
-            this.blurToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.blurToolStripMenuItem.Text = "Blur";
+            this.blurToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.blurToolStripMenuItem.Text = "Blur Image";
             this.blurToolStripMenuItem.Click += new System.EventHandler(this.BlurImageFilter);
+            // 
+            // pictureMergeToolStripMenuItem
+            // 
+            this.pictureMergeToolStripMenuItem.Name = "pictureMergeToolStripMenuItem";
+            this.pictureMergeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pictureMergeToolStripMenuItem.Text = "Picture Merge...";
+            this.pictureMergeToolStripMenuItem.Click += new System.EventHandler(this.MergeImage);
             // 
             // drawToolStripMenuItem
             // 
             this.drawToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.drawColorSelection});
+            this.drawColorSelection,
+            this.drawToolStripMenuItem1});
             this.drawToolStripMenuItem.Name = "drawToolStripMenuItem";
             this.drawToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.drawToolStripMenuItem.Text = "Draw";
@@ -428,9 +459,16 @@ namespace Fotofilter
             // drawColorSelection
             // 
             this.drawColorSelection.Name = "drawColorSelection";
-            this.drawColorSelection.Size = new System.Drawing.Size(180, 22);
-            this.drawColorSelection.Text = "Select color...";
+            this.drawColorSelection.Size = new System.Drawing.Size(240, 22);
+            this.drawColorSelection.Text = "Select Color...";
             this.drawColorSelection.Click += new System.EventHandler(this.DrawSelectColor);
+            // 
+            // drawToolStripMenuItem1
+            // 
+            this.drawToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.drawToolStripMenuItem1.Name = "drawToolStripMenuItem1";
+            this.drawToolStripMenuItem1.Size = new System.Drawing.Size(180, 23);
+            this.drawToolStripMenuItem1.Text = "Draw";
             // 
             // aboutToolStripMenuItem
             // 
@@ -442,34 +480,6 @@ namespace Fotofilter
             // saveImage
             // 
             this.saveImage.RestoreDirectory = true;
-            // 
-            // ångraToolStripMenuItem
-            // 
-            this.ångraToolStripMenuItem.Name = "ångraToolStripMenuItem";
-            this.ångraToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.ångraToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.ångraToolStripMenuItem.Text = "Undo";
-            this.ångraToolStripMenuItem.Click += new System.EventHandler(this.Undo);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(226, 6);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(226, 6);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // mainForm
             // 
@@ -536,12 +546,13 @@ namespace Fotofilter
         private System.Windows.Forms.ColorDialog colorPicker;
         private System.Windows.Forms.ToolStripMenuItem drawToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem drawColorSelection;
-        private System.Windows.Forms.ToolStripMenuItem trackBarToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ångraToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem pictureMergeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox drawToolStripMenuItem1;
     }
 }
 

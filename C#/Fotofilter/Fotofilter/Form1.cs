@@ -27,6 +27,8 @@ namespace Fotofilter
         //the standard brush color for the drawing tool
         public Color brushColor = Color.Black;
 
+        BrightSlide BrightSlide = new BrightSlide();
+
         public mainForm()
         {
             InitializeComponent();
@@ -229,6 +231,8 @@ namespace Fotofilter
 
         #region Manipulate image
 
+        //inför lossless operations: Alla filter man gör läggs på en lista, sedan så tar man grundbilden och filtrerar den vidare genom listan, detta gör då att brightness t.ex fungerar bättre
+        //tror det kan vara såhär de gör på photoshop när de använder layers
         private void DemonGrainImageFilter(object sender, EventArgs e)
         {
 
@@ -848,6 +852,14 @@ namespace Fotofilter
             Bitmap picture = new Bitmap(pbBild.Image);
             Color[,] pixelArray = new Color[picture.Width, picture.Height];
 
+
+
+            int blurSize = 4;
+
+           
+
+
+
             for (int y = 0; y < picture.Height; y++)
             {
                 for (int x = 0; x < picture.Width; x++)
@@ -877,21 +889,20 @@ namespace Fotofilter
                     int BSum = 0;
                     int pixels = 0;
 
-                    int area = 4;
-
                     //math.max stops negative positions which cause index out of array errors 
-                    for (int yOffset = Math.Max(y - area, 0); yOffset < y + area; yOffset++)
+                    for (int yOffset = Math.Max(y - blurSize, 0); yOffset < y + blurSize; yOffset++)
                     {
-                        for (int xOffset = Math.Max(x - area, 0); xOffset < x + area; xOffset++)
+                        for (int xOffset = Math.Max(x - blurSize, 0); xOffset < x + blurSize; xOffset++)
                         {
                             //gaussian blur equation stuff
                             //double eRaise = ((xOffset ^ 2) * (yOffset ^ 2)) / 2 * (Math.Pow(o, 2));
                             //double blur = formula * Math.Pow(Math.E, -1 * eRaise);
 
                             //math min stops faulty coordinates
-                            RSum += RGBClamp(pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].R);
-                            GSum += RGBClamp(pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].G);
-                            BSum += RGBClamp(pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].B);
+
+                            RSum += pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].R;
+                            GSum += pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].G;
+                            BSum += pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].B;
                             pixels++;
                         }
                     }
@@ -922,12 +933,77 @@ namespace Fotofilter
 
         }
 
+        private void MergeImage(object sender, EventArgs e)
+        {
+            if (openImage.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap picture1 = GetCurrentImage();
+                Bitmap picture2 = new Bitmap(openImage.FileName);
+
+                //how do i merge larger images; i need to downsize or enlarge it that means i need to fix the scale function first
+            }
+        }
+
+        private void ChangeBrightness(object sender, EventArgs e)
+        {
+
+            //detta är lossy om man maxar rgb värdet vilket betyder att om man vill ha lossless så måste man sätta filter på lager, alltså man har en queue med filter som utförs på rad
+
+            BrightSlide.ShowDialog();
+
+            Bitmap picture = GetCurrentImage();
+            Color[,] pixelArray = new Color[picture.Width, picture.Height];
+
+            if (BrightSlide.DialogResult == DialogResult.OK)
+            {
+                //make brighter
+                int howBright = BrightSlide.Value;
+
+                for (int y = 0; y < picture.Height; y++)
+                {
+                    for (int x = 0; x < picture.Width; x++)
+                    {
+
+                        pixelArray[x, y] = picture.GetPixel(x, y);
+
+                    }
+                }
+
+                //increases brightness/increases rgb sum
+                for (int y = 0; y < picture.Height; y++)
+                {
+                    for (int x = 0; x < picture.Width; x++)
+                    {
+
+                        pixelArray[x, y] = Color.FromArgb(RGBClamp(pixelArray[x, y].R + howBright), RGBClamp(pixelArray[x, y].G + howBright), RGBClamp(pixelArray[x, y].B + howBright));
+
+                    }
+                }
+
+
+                for (int y = 0; y < picture.Height; y++)
+                {
+                    for (int x = 0; x < picture.Width; x++)
+                    {
+                        picture.SetPixel(x, y, pixelArray[x, y]);
+                    }
+                }
+
+                pbBild.Image = picture;
+
+            }
+
+
+
+        }
+
         #endregion
 
         #region Drawing tools
 
         //Paint brush pseudo code
         //when mouse is down on the image then set the pixel, if it isn't already, to the brush color and don't update it if it isn't on a different pixel
+        // keep coloring to the current displayed image but reference the old one until the mouse button is let go
 
 
         //to learn:
@@ -970,12 +1046,14 @@ namespace Fotofilter
             {
                 for (int x = 0; x < brushSize; x++)
                 {
-                        image.SetPixel(Clamp(0 , e.X - brushSize / 2 + x,  image.Width-1), Clamp(0, e.Y - brushSize / 2 + y, image.Height - 1), brushColor);
+                    image.SetPixel(Clamp(0, e.X - brushSize / 2 + x, image.Width - 1), Clamp(0, e.Y - brushSize / 2 + y, image.Height - 1), brushColor);
                 }
             }
 
             pbBild.Image = image;
         }
+
         #endregion
+
     }
 }
