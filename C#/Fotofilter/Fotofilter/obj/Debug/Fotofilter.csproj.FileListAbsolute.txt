@@ -9,3 +9,4 @@ C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\o
 C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.csproj.CopyComplete
 C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.exe
 C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.pdb
+C:\Users\matts\Desktop\Programmering\C#\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.BrightSlide.resources
