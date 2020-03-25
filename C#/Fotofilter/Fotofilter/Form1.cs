@@ -32,6 +32,7 @@ namespace Fotofilter
         public mainForm()
         {
             InitializeComponent();
+            openImage.Title = "Select an image...";
             openImage.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF";
             saveImage.Filter = openImage.Filter;
             openImage.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -315,14 +316,6 @@ namespace Fotofilter
                     //it found a discrepancy and thus proceeds to sorting
                     break;
                 }
-
-
-                //martins special
-
-                //if (pixels[i + 1].R + pixels[i + 1].G + pixels[i + 1].B > pixels[i].R + pixels[i].G + pixels[i].B)
-                //{
-                //    break;  
-                //}
             }
 
 
@@ -697,30 +690,32 @@ namespace Fotofilter
 
             Bitmap picture = GetCurrentImage();
             //creates the array at the size of the amount of pixels
-            Color[] allPixels = new Color[picture.Width * picture.Height];
+            Color[,] allPixels = new Color[picture.Width, picture.Height];
 
             //gets every pixel
-            for (int y = 0, whichPixel = 0; y < picture.Height; y++)
+            for (int y = 0; y < picture.Height; y++)
             {
-                for (int x = 0; x < picture.Width; x++, whichPixel++)
+                for (int x = 0; x < picture.Width; x++)
                 {
-                    allPixels[whichPixel] = picture.GetPixel(x, y);
+                    allPixels[x, y] = picture.GetPixel(x, y);
                 }
             }
 
-            for (int i = 0; i < allPixels.Length; i++)
+            for (int y = 0; y < picture.Height; y++)
             {
-                int shade = (allPixels[i].R + allPixels[i].G + allPixels[i].B) / 3;
-                allPixels[i] = Color.FromArgb(shade, shade, shade);
+                for (int x = 0; x < picture.Width; x++)
+                {
+                    int shade = (allPixels[x, y].R + allPixels[x, y].G + allPixels[x, y].B) / 3;
+                    allPixels[x, y] = Color.FromArgb(shade, shade, shade);
+                }
             }
 
-
             //draws image
-            for (int y = 0, whichPixel = 0; y < picture.Height; y++)
+            for (int y = 0; y < picture.Height; y++)
             {
-                for (int x = 0; x < picture.Width; x++, whichPixel++)
+                for (int x = 0; x < picture.Width; x++)
                 {
-                    picture.SetPixel(x, y, allPixels[whichPixel]);
+                    picture.SetPixel(x, y, allPixels[x, y]);
                 }
             }
 
@@ -732,40 +727,39 @@ namespace Fotofilter
 
             Bitmap picture = GetCurrentImage();
             //creates the array with the size of the amount of pixels
-            Color[] allPixels = new Color[picture.Width * picture.Height];
+            Color[,] allPixels = new Color[picture.Width, picture.Height];
             Random rng = new Random();
 
             //gets every pixel
-            for (int y = 0, whichPixel = 0; y < picture.Height; y++)
+            for (int y = 0; y < picture.Height; y++)
             {
-                for (int x = 0; x < picture.Width; x++, whichPixel++)
+                for (int x = 0; x < picture.Width; x++)
                 {
-                    allPixels[whichPixel] = picture.GetPixel(x, y);
+                    allPixels[x, y] = picture.GetPixel(x, y);
                 }
             }
 
-
-
-            for (int i = 0; i < allPixels.Length; i++)
+            for (int y = 0; y < picture.Height; y++)
             {
-                int grain = rng.Next(-30, 31);
-                //Math.Min(Math.Max()) clamps the value between acceptable levels
-                allPixels[i] = Color.FromArgb(Math.Min(Math.Max(allPixels[i].R + grain, 0), 255), Math.Min(Math.Max(allPixels[i].G + grain, 0), 255), Math.Min(Math.Max(allPixels[i].B + grain, 0), 255));
+                for (int x = 0; x < picture.Width; x++)
+                {
+                    int grain = rng.Next(-30, 31);
+                    //Math.Min(Math.Max()) clamps the value between acceptable levels
+
+                    allPixels[x, y] = Color.FromArgb(Math.Min(Math.Max(allPixels[x, y].R + grain, 0), 255), Math.Min(Math.Max(allPixels[x, y].G + grain, 0), 255), Math.Min(Math.Max(allPixels[x, y].B + grain, 0), 255));
+                }
             }
-
-            //displaces the brightness by X amount, the amount can not be so big that the byte goes below 0 or overflows.
-
-
 
             //draws image
             for (int y = 0, whichPixel = 0; y < picture.Height; y++)
             {
                 for (int x = 0; x < picture.Width; x++, whichPixel++)
                 {
-                    picture.SetPixel(x, y, allPixels[whichPixel]);
+                    picture.SetPixel(x, y, allPixels[x, y]);
                 }
             }
 
+            //applies image to the picturebox
             pbBild.Image = picture;
         }
 
@@ -852,13 +846,7 @@ namespace Fotofilter
             Bitmap picture = new Bitmap(pbBild.Image);
             Color[,] pixelArray = new Color[picture.Width, picture.Height];
 
-
-
             int blurSize = 4;
-
-           
-
-
 
             for (int y = 0; y < picture.Height; y++)
             {
@@ -899,18 +887,23 @@ namespace Fotofilter
                             //double blur = formula * Math.Pow(Math.E, -1 * eRaise);
 
                             //math min stops faulty coordinates
+                            if (xOffset < picture.Width && yOffset < picture.Height)
+                            {
+                                RSum += pixelArray[xOffset, yOffset].R;
+                                GSum += pixelArray[xOffset, yOffset].G;
+                                BSum += pixelArray[xOffset, yOffset].B;
+                                pixels++;
+                            }
 
-                            RSum += pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].R;
-                            GSum += pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].G;
-                            BSum += pixelArray[Math.Min(xOffset, picture.Width - 1), Math.Min(yOffset, picture.Height - 1)].B;
-                            pixels++;
+
+
                         }
                     }
 
                     //gets the new rgb value for the pixel
-                    RSum = RSum / pixels;
-                    GSum = GSum / pixels;
-                    BSum = BSum / pixels;
+                    RSum /= pixels;
+                    GSum /= pixels;
+                    BSum /= pixels;
 
                     copyArray[x, y] = Color.FromArgb(RSum, GSum, BSum);
 
