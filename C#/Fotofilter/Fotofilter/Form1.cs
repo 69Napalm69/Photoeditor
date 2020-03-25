@@ -228,6 +228,12 @@ namespace Fotofilter
 
         }
 
+        private void CopyToClipboard(object sender, EventArgs e)
+        {
+            Clipboard.SetImage(pbBild.Image);
+
+        }
+
         #endregion
 
         #region Manipulate image
@@ -1048,5 +1054,6 @@ namespace Fotofilter
 
         #endregion
 
+        
     }
 }
