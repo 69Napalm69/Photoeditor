@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,9 @@ namespace Fotofilter
 
         //the standard brush color for the drawing tool
         public Color brushColor = Color.Black;
+        private bool painting = false;
 
+        //the slider used for the brightness shifter
         BrightSlide BrightSlide = new BrightSlide();
 
         public mainForm()
@@ -507,8 +510,6 @@ namespace Fotofilter
         private void AbsoluteColorFilter(object sender, EventArgs e)
         {
             //Set every pixel to their absolute RGB color
-            //black and white turns red due to lack of inate hue because of the brightness
-
             Bitmap picture = GetCurrentImage();
             Color[] allPixels = new Color[picture.Width * picture.Height];
 
@@ -524,26 +525,65 @@ namespace Fotofilter
             //processes every pixel
             for (int i = 0; i < allPixels.Count(); i++)
             {
-                //if either red, green or blue
-
-
                 //red
-                if (allPixels[i].GetHue() <= 60 || allPixels[i].GetHue() >= 306)
+                if (allPixels[i].GetHue() >= 0 && allPixels[i].GetHue() < 30)
                 {
-                    allPixels[i] = Color.FromArgb(255, 0, 0);
-
+                    allPixels[i] = Color.Red;
+                }
+                //orange
+                else if (allPixels[i].GetHue() >= 30 && allPixels[i].GetHue() < 60)
+                {
+                    allPixels[i] = Color.Orange;
+                }
+                //yellow
+                else if (allPixels[i].GetHue() >= 60 && allPixels[i].GetHue() < 90)
+                {
+                    allPixels[i] = Color.Yellow;
+                }
+                //lime
+                else if (allPixels[i].GetHue() >= 90 && allPixels[i].GetHue() < 120)
+                {
+                    allPixels[i] = Color.Lime;
                 }
                 //green
-                else if (allPixels[i].GetHue() > 60 && allPixels[i].GetHue() <= 166)
+                else if (allPixels[i].GetHue() >= 120 && allPixels[i].GetHue() < 150)
                 {
-                    allPixels[i] = Color.FromArgb(0, 255, 0);
-
+                    allPixels[i] = Color.Green;
+                }
+                //cyan
+                else if (allPixels[i].GetHue() >= 150 && allPixels[i].GetHue() < 180)
+                {
+                    allPixels[i] = Color.Cyan;
+                }
+                //lightblue
+                else if (allPixels[i].GetHue() >= 180 && allPixels[i].GetHue() < 210)
+                {
+                    allPixels[i] = Color.LightBlue;
+                }
+                //turquise
+                else if (allPixels[i].GetHue() >= 210 && allPixels[i].GetHue() < 240)
+                {
+                    allPixels[i] = Color.Turquoise;
                 }
                 //blue
-                else
+                else if (allPixels[i].GetHue() >= 240 && allPixels[i].GetHue() < 270)
                 {
-                    allPixels[i] = Color.FromArgb(0, 0, 255);
-
+                    allPixels[i] = Color.Blue;
+                }
+                //purple    
+                else if (allPixels[i].GetHue() >= 270 && allPixels[i].GetHue() < 300)
+                {
+                    allPixels[i] = Color.Purple;
+                }
+                //magenta
+                else if (allPixels[i].GetHue() >= 300 && allPixels[i].GetHue() < 330)
+                {
+                    allPixels[i] = Color.Magenta;
+                }
+                //pink
+                else if (allPixels[i].GetHue() >= 330 && allPixels[i].GetHue() < 360)
+                {
+                    allPixels[i] = Color.Pink;
                 }
 
             }
@@ -1032,28 +1072,48 @@ namespace Fotofilter
             }
         }
 
-        private void DrawPaint(object sender, MouseEventArgs e)
+        private void StartPaint(object sender, MouseEventArgs e)
         {
-            //MessageBox.Show(mouse.X.ToString() + " " + mouse.Y.ToString(), "mouse coords", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            painting = true;
+        }
 
+        private void StopPaint(object sender, MouseEventArgs e)
+        {
+            painting = false;
+        }
 
+        private async Task<Bitmap> DrawPaintAsync(MouseEventArgs e)
+        {
 
             int brushSize = 10;
-
-            Bitmap image = GetCurrentImage();
-            for (int y = 0; y < brushSize; y++)
-            {
-                for (int x = 0; x < brushSize; x++)
+            Bitmap image = new Bitmap(pbBild.Image);
+            
+                for (int y = 0; y < brushSize; y++)
                 {
-                    image.SetPixel(Clamp(0, e.X - brushSize / 2 + x, image.Width - 1), Clamp(0, e.Y - brushSize / 2 + y, image.Height - 1), brushColor);
+                    for (int x = 0; x < brushSize; x++)
+                    {
+                        image.SetPixel(Clamp(0, e.X - brushSize / 2 + x, image.Width - 1), Clamp(0, e.Y - brushSize / 2 + y, image.Height - 1), brushColor);
+                    }
+                }
+
+            return image;
+        }
+
+        private async void TrackMouse(object sender, MouseEventArgs e)
+        {
+            if (pbBild.Image != null)
+            {
+                if (painting)
+                {
+                    //when mouse moves it calls the async drawpaint method
+                    Task<Bitmap> paintImage = DrawPaintAsync(e);
+                    Bitmap cache = await paintImage;
+                    cache.Save(cacheSave.BaseStream, ImageFormat.Bmp); ;
+                    pbBild.LoadAsync();
                 }
             }
-
-            pbBild.Image = image;
         }
 
         #endregion
-
-        
     }
 }

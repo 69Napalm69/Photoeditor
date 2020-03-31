@@ -35,6 +35,7 @@ namespace Fotofilter
             this.arkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.öppnaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sparaBildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveToClipboard = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ångraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.görOmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +81,6 @@ namespace Fotofilter
             this.openImage = new System.Windows.Forms.OpenFileDialog();
             this.saveImage = new System.Windows.Forms.SaveFileDialog();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
-            this.SaveToClipboard = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbBild)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +93,9 @@ namespace Fotofilter
             this.pbBild.Size = new System.Drawing.Size(328, 138);
             this.pbBild.TabIndex = 1;
             this.pbBild.TabStop = false;
-            this.pbBild.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DrawPaint);
+            this.pbBild.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StartPaint);
+            this.pbBild.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TrackMouse);
+            this.pbBild.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopPaint);
             // 
             // menuStrip1
             // 
@@ -144,6 +146,14 @@ namespace Fotofilter
             this.sparaBildToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
             this.sparaBildToolStripMenuItem.Text = "Save image as...";
             this.sparaBildToolStripMenuItem.Click += new System.EventHandler(this.ImageSaveAs);
+            // 
+            // SaveToClipboard
+            // 
+            this.SaveToClipboard.Name = "SaveToClipboard";
+            this.SaveToClipboard.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.SaveToClipboard.Size = new System.Drawing.Size(286, 26);
+            this.SaveToClipboard.Text = "Copy To Clipboard";
+            this.SaveToClipboard.Click += new System.EventHandler(this.CopyToClipboard);
             // 
             // toolStripSeparator1
             // 
@@ -481,14 +491,6 @@ namespace Fotofilter
             // saveImage
             // 
             this.saveImage.RestoreDirectory = true;
-            // 
-            // SaveToClipboard
-            // 
-            this.SaveToClipboard.Name = "SaveToClipboard";
-            this.SaveToClipboard.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.SaveToClipboard.Size = new System.Drawing.Size(286, 26);
-            this.SaveToClipboard.Text = "Copy To Clipboard";
-            this.SaveToClipboard.Click += new System.EventHandler(this.CopyToClipboard);
             // 
             // mainForm
             // 
