@@ -87,7 +87,7 @@ namespace Fotofilter
             // 
             // pbBild
             // 
-            this.pbBild.Location = new System.Drawing.Point(12, 31);
+            this.pbBild.Location = new System.Drawing.Point(0, 30);
             this.pbBild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbBild.Name = "pbBild";
             this.pbBild.Size = new System.Drawing.Size(328, 138);
@@ -108,7 +108,7 @@ namespace Fotofilter
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(460, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(352, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -496,15 +496,15 @@ namespace Fotofilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(460, 182);
+            this.ClientSize = new System.Drawing.Size(352, 183);
             this.Controls.Add(this.pbBild);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimumSize = new System.Drawing.Size(370, 70);
             this.Name = "mainForm";
             this.Text = "ImageBoutique";
+            this.Resize += new System.EventHandler(this.ResizeImage);
             ((System.ComponentModel.ISupportInitialize)(this.pbBild)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

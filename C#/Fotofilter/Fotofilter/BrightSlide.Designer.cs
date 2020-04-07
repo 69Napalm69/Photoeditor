@@ -41,7 +41,7 @@
             // 
             this.Brightness.LargeChange = 51;
             this.Brightness.Location = new System.Drawing.Point(16, 17);
-            this.Brightness.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Brightness.Margin = new System.Windows.Forms.Padding(4);
             this.Brightness.Maximum = 255;
             this.Brightness.Minimum = -255;
             this.Brightness.Name = "Brightness";
@@ -52,7 +52,7 @@
             // btnAccept
             // 
             this.btnAccept.Location = new System.Drawing.Point(16, 80);
-            this.btnAccept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAccept.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(161, 28);
             this.btnAccept.TabIndex = 1;
@@ -63,8 +63,9 @@
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(197, 80);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(161, 28);
             this.btnCancel.TabIndex = 2;
@@ -101,8 +102,10 @@
             // 
             // BrightSlide
             // 
+            this.AcceptButton = this.btnAccept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(375, 123);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -111,7 +114,7 @@
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.Brightness);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BrightSlide";
             this.Text = "BrightSlide";
             ((System.ComponentModel.ISupportInitialize)(this.Brightness)).EndInit();

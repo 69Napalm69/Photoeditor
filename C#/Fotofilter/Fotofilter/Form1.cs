@@ -85,6 +85,8 @@ namespace Fotofilter
                 editHistory.Clear();
                 OriginalImage = new Bitmap(openImage.FileName);
                 editHistory.Add(OriginalImage);
+                mainForm.ActiveForm.Width = OriginalImage.Width;
+                mainForm.ActiveForm.Height = OriginalImage.Height;
                 pbBild.Image = OriginalImage;
                 currentImage = -1;
                 // sets picturebox to the image size
@@ -207,28 +209,6 @@ namespace Fotofilter
         private int Clamp(int min, int value, int max)
         {
             return Math.Min(Math.Max(value, min), max);
-        }
-
-        private void Scale(object sender, EventArgs e)
-        {
-
-            ToolStripMenuItem button = sender as ToolStripMenuItem;
-
-            double zoomAmount;
-
-            switch (button.Name.ToLower())
-            {
-                case "out":
-                    zoomAmount = 2;
-                    break;
-
-                case "in":
-                    zoomAmount = 0.5;
-                    break;
-            }
-
-
-
         }
 
         private void CopyToClipboard(object sender, EventArgs e)
@@ -998,15 +978,7 @@ namespace Fotofilter
                 //make brighter
                 int howBright = BrightSlide.Value;
 
-                for (int y = 0; y < picture.Height; y++)
-                {
-                    for (int x = 0; x < picture.Width; x++)
-                    {
-
-                        pixelArray[x, y] = picture.GetPixel(x, y);
-
-                    }
-                }
+                
 
                 //increases brightness/increases rgb sum
                 for (int y = 0; y < picture.Height; y++)
@@ -1033,6 +1005,34 @@ namespace Fotofilter
             }
 
 
+
+        }
+
+        private void Scale(object sender, EventArgs e)
+        {
+
+            ToolStripMenuItem button = sender as ToolStripMenuItem;
+
+
+            Image pic = pbBild.Image;
+            Bitmap newImage = new Bitmap(pic.GetThumbnailImage(pic.Width / 2, pic.Height/2, null, IntPtr.Zero));
+
+            pbBild.Image = newImage;
+            
+
+        }
+        private void ResizeImage(object sender, EventArgs e)
+        {
+            if (pbBild.Image != null)
+            {
+                Image newSize = pbBild.Image;
+
+                pbBild.Image = newSize.GetThumbnailImage(mainForm.ActiveForm.Size.Width, mainForm.ActiveForm.Size.Height, null, IntPtr.Zero);
+
+                pbBild.Width = newSize.Width;
+                pbBild.Height = newSize.Height;
+            }
+            
 
         }
 
@@ -1080,6 +1080,8 @@ namespace Fotofilter
         private void StopPaint(object sender, MouseEventArgs e)
         {
             painting = false;
+            GetCurrentImage();
+
         }
 
         private async Task<Bitmap> DrawPaintAsync(MouseEventArgs e)
@@ -1087,14 +1089,14 @@ namespace Fotofilter
 
             int brushSize = 10;
             Bitmap image = new Bitmap(pbBild.Image);
-            
-                for (int y = 0; y < brushSize; y++)
+
+            for (int y = 0; y < brushSize; y++)
+            {
+                for (int x = 0; x < brushSize; x++)
                 {
-                    for (int x = 0; x < brushSize; x++)
-                    {
-                        image.SetPixel(Clamp(0, e.X - brushSize / 2 + x, image.Width - 1), Clamp(0, e.Y - brushSize / 2 + y, image.Height - 1), brushColor);
-                    }
+                    image.SetPixel(Clamp(0, e.X - brushSize / 2 + x, image.Width - 1), Clamp(0, e.Y - brushSize / 2 + y, image.Height - 1), brushColor);
                 }
+            }
 
             return image;
         }
@@ -1107,13 +1109,16 @@ namespace Fotofilter
                 {
                     //when mouse moves it calls the async drawpaint method
                     Task<Bitmap> paintImage = DrawPaintAsync(e);
-                    Bitmap cache = await paintImage;
-                    cache.Save(cacheSave.BaseStream, ImageFormat.Bmp); ;
-                    pbBild.LoadAsync();
+
+                    Bitmap image = await paintImage;
+
+                    pbBild.Image = image;
                 }
             }
         }
 
         #endregion
+
+        
     }
 }
