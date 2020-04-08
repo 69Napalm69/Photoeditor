@@ -15,6 +15,8 @@ namespace Fotofilter
 {
     public partial class mainForm : Form
     {
+
+
         //saves the original image as a safestate
         private static Bitmap OriginalImage;
 
@@ -31,6 +33,11 @@ namespace Fotofilter
 
         //the slider used for the brightness shifter
         BrightSlide BrightSlide = new BrightSlide();
+
+        //the menu for setting new dimensions on the image
+        Sizer SizeMenu = new Sizer();
+        public static int currentWidth;
+        public static int currentHeight;
 
         public mainForm()
         {
@@ -54,17 +61,21 @@ namespace Fotofilter
 
         }
 
-        #region General functions
+        #region General functions: Functions that has more to do with the program than the image editing
         private void CloseApp(object sender, EventArgs e)
         {
+            //checks if you saved the image before closing
             if (!hasSaved)
             {
+                //displays a Messagebox asking if you are sure you want to close the program or not, losing the image not having saved it
                 DialogResult exit = MessageBox.Show("Are you sure you want to exit?\r\nContent has not been saved.", "Exit dialog", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                //if they wanted to close 
                 if (exit == DialogResult.Yes)
                 {
                     Application.Exit();
                 }
             }
+            //if they have saved since the last edit
             else
             {
                 Application.Exit();
@@ -74,19 +85,19 @@ namespace Fotofilter
 
         private void OpenAbout(object sender, EventArgs e)
         {
+            //opens a box telling you information about the program
             MessageBox.Show("This program was made by Gabriel Mattsson as a project for his programming course and includes a variety of different image filters\n\rSort: has 2 features; shade sort sorts all the pixels after how bright they are and color sort sorts them from red to green to blue.", "About Page", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void OpenImage(object sender, EventArgs e)
         {
-            //Open image logic
+            //Open image function
             if (openImage.ShowDialog() == DialogResult.OK)
             {
                 editHistory.Clear();
                 OriginalImage = new Bitmap(openImage.FileName);
                 editHistory.Add(OriginalImage);
-                mainForm.ActiveForm.Width = OriginalImage.Width;
-                mainForm.ActiveForm.Height = OriginalImage.Height;
+
                 pbBild.Image = OriginalImage;
                 currentImage = -1;
                 // sets picturebox to the image size
@@ -97,6 +108,8 @@ namespace Fotofilter
 
         private Bitmap GetCurrentImage()
         {
+            //gets called upon a filter as it handles the editing queue
+
             //if you've undone and thus stops weird image stacking because add puts the image at the end of the list
             if (currentImage < editHistory.Count - 1)
             {
@@ -117,12 +130,12 @@ namespace Fotofilter
 
         private void ImageSaveAs(object sender, EventArgs e)
         {
-
+            
             if (saveImage.ShowDialog() == DialogResult.OK)
             {
                 //Available formats: *.BMP; *.JPG; *.GIF,*.PNG,*.TIFF
                 //saves image in different formats depending on which you want
-                //default format is bitmap
+                //default format is Png
                 //system gotten from 
                 //https://stackoverflow.com/questions/11055258/how-to-use-savefiledialog-for-saving-images-in-c
 
@@ -153,12 +166,14 @@ namespace Fotofilter
                         break;
 
                     default:
-                        format = ImageFormat.Bmp;
+                        format = ImageFormat.Png;
                         break;
                 }
 
+                //saves the image in the selected format
                 Bitmap picture = new Bitmap(pbBild.Image);
                 picture.Save(saveImage.FileName, format);
+                //sets this bool to true so that you can close the program without getting prompted if you are sure you want to
                 hasSaved = true;
             }
 
@@ -166,23 +181,22 @@ namespace Fotofilter
 
         private void ResetImage(object sender, EventArgs e)
         {
+            //gets the original look of the image
             pbBild.Image = editHistory[0];
         }
 
         private void Undo(object sender, EventArgs e)
         {
-            //and every time this function gets called it goes back one step 
+            //and every time this function gets called it is supposed to go back one step 
 
-            //how to work: always set the current bitmap to be the last one in the list, when edited
-            //when ctrl + z then increase the displacement by 1 
+            //when ctrl + z then decrease the selection by 1 
 
-            //problems: the undo isntead make the image turn into the original and not the one that is one step back
-            //problems: current image is being weird cuz it should be decreased before the picture is set, not before
             //steps back in the image history
             if (currentImage > 0)
             {
                 currentImage--;
 
+                //sets image to the one before it
                 pbBild.Image = editHistory[currentImage];
             }
 
@@ -191,7 +205,7 @@ namespace Fotofilter
         private void Redo(object sender, EventArgs e)
         {
 
-            //weird interaction when undoing and redoing 
+            //goes forward in the edithistory
             if (currentImage < editHistory.Count - 1)
             {
                 currentImage++;
@@ -201,25 +215,26 @@ namespace Fotofilter
 
         private int RGBClamp(double value)
         {
-
+            //clamps the value within rgb value limits 
             return Convert.ToInt32(Math.Min(Math.Max(value, 0), 255));
 
         }
 
         private int Clamp(int min, int value, int max)
         {
+            //clamps value between 2 select limits
             return Math.Min(Math.Max(value, min), max);
         }
 
         private void CopyToClipboard(object sender, EventArgs e)
         {
+            //saves the image to you clipboard 
             Clipboard.SetImage(pbBild.Image);
-
         }
 
         #endregion
 
-        #region Manipulate image
+        #region Manipulate image: Tools for manipulating images
 
         //inför lossless operations: Alla filter man gör läggs på en lista, sedan så tar man grundbilden och filtrerar den vidare genom listan, detta gör då att brightness t.ex fungerar bättre
         //tror det kan vara såhär de gör på photoshop när de använder layers
@@ -888,54 +903,44 @@ namespace Fotofilter
             //the blur effect calls the colors straight from the pixelArray so it needs to remain unmodified
             Color[,] copyArray = pixelArray;
 
-            //gaussian blur equation stuff
-            //double o = 0.683;
-            //double formula = 1 / (2 * Math.PI * Math.Pow(0, 2));
 
-            //selecting the pixel
+            //calculates the blur for every pixel
             for (int y = 0; y < picture.Height; y++)
             {
                 for (int x = 0; x < picture.Width; x++)
                 {
-                    //applying blur to every pixel
-                    int RSum = 0;
-                    int GSum = 0;
-                    int BSum = 0;
+                    //int array that will contain the rgb sums
+                    int[] RGBSums = new int[3];
+                    //the pixels count goes up if it gets used because you can't just use a pre-calculated value as the "for" loop has a couple of specific conditions making it inconsistent
                     int pixels = 0;
 
-                    //math.max stops negative positions which cause index out of array errors 
+                    //Math.Max limits it to start within the actual picture and with a diplacement of the size of the sampling you want
                     for (int yOffset = Math.Max(y - blurSize, 0); yOffset < y + blurSize; yOffset++)
                     {
                         for (int xOffset = Math.Max(x - blurSize, 0); xOffset < x + blurSize; xOffset++)
                         {
-                            //gaussian blur equation stuff
-                            //double eRaise = ((xOffset ^ 2) * (yOffset ^ 2)) / 2 * (Math.Pow(o, 2));
-                            //double blur = formula * Math.Pow(Math.E, -1 * eRaise);
-
-                            //math min stops faulty coordinates
+                            //only gets the pixel if the position is within the picture's dimensions as to not crash due to being outside of the array
                             if (xOffset < picture.Width && yOffset < picture.Height)
                             {
-                                RSum += pixelArray[xOffset, yOffset].R;
-                                GSum += pixelArray[xOffset, yOffset].G;
-                                BSum += pixelArray[xOffset, yOffset].B;
+                                RGBSums[0] += pixelArray[xOffset, yOffset].R;
+                                RGBSums[1] += pixelArray[xOffset, yOffset].G;
+                                RGBSums[2] += pixelArray[xOffset, yOffset].B;
                                 pixels++;
                             }
-
-
 
                         }
                     }
 
-                    //gets the new rgb value for the pixel
-                    RSum /= pixels;
-                    GSum /= pixels;
-                    BSum /= pixels;
+                    //divides the sum with the amount of pixels to get the average value of each
+                    RGBSums[0] /= pixels;
+                    RGBSums[1] /= pixels;
+                    RGBSums[2] /= pixels;
 
-                    copyArray[x, y] = Color.FromArgb(RSum, GSum, BSum);
+                    //puts the pixel into the extra array
+                    copyArray[x, y] = Color.FromArgb(RGBSums[0], RGBSums[1], RGBSums[2]);
 
                 }
             }
-
 
             //paint picture
             for (int y = 0; y < picture.Height; y++)
@@ -978,8 +983,6 @@ namespace Fotofilter
                 //make brighter
                 int howBright = BrightSlide.Value;
 
-                
-
                 //increases brightness/increases rgb sum
                 for (int y = 0; y < picture.Height; y++)
                 {
@@ -991,7 +994,6 @@ namespace Fotofilter
                     }
                 }
 
-
                 for (int y = 0; y < picture.Height; y++)
                 {
                     for (int x = 0; x < picture.Width; x++)
@@ -1001,24 +1003,22 @@ namespace Fotofilter
                 }
 
                 pbBild.Image = picture;
-
             }
-
-
-
         }
 
         private void Scale(object sender, EventArgs e)
         {
+            currentHeight = pbBild.Image.Height;
+            currentWidth = pbBild.Image.Width;
+            if (SizeMenu.ShowDialog() == DialogResult.OK)
+            {
 
-            ToolStripMenuItem button = sender as ToolStripMenuItem;
+                pbBild.Image = pbBild.Image.GetThumbnailImage(Sizer.newWidth, Sizer.newHeight, null, IntPtr.Zero);
 
+                pbBild.Width = pbBild.Image.Width;
+                pbBild.Height = pbBild.Image.Height;
+            }
 
-            Image pic = pbBild.Image;
-            Bitmap newImage = new Bitmap(pic.GetThumbnailImage(pic.Width / 2, pic.Height/2, null, IntPtr.Zero));
-
-            pbBild.Image = newImage;
-            
 
         }
         private void ResizeImage(object sender, EventArgs e)
@@ -1027,18 +1027,18 @@ namespace Fotofilter
             {
                 Image newSize = pbBild.Image;
 
-                pbBild.Image = newSize.GetThumbnailImage(mainForm.ActiveForm.Size.Width, mainForm.ActiveForm.Size.Height, null, IntPtr.Zero);
+                pbBild.Image = newSize.GetThumbnailImage(mainForm.ActiveForm.Size.Width, mainForm.ActiveForm.Size.Height - 70, null, IntPtr.Zero);
 
                 pbBild.Width = newSize.Width;
                 pbBild.Height = newSize.Height;
             }
-            
+
 
         }
 
         #endregion
 
-        #region Drawing tools
+        #region Drawing tools: Rudamentary way to draw on the current image
 
         //Paint brush pseudo code
         //when mouse is down on the image then set the pixel, if it isn't already, to the brush color and don't update it if it isn't on a different pixel
@@ -1052,13 +1052,14 @@ namespace Fotofilter
         {
             if (colorPicker.ShowDialog() == DialogResult.OK)
             {
-
+                //sets the brush to the color you selected
                 brushColor = colorPicker.Color;
 
                 //sets the image to the selected color
                 ToolStripMenuItem button = sender as ToolStripMenuItem;
                 Bitmap logo = new Bitmap(16, 16);
 
+                //draws the logo for the color select thingie which then shows your select color
                 for (int y = 0; y < logo.Height; y++)
                 {
                     for (int x = 0; x < logo.Width; x++)
@@ -1074,22 +1075,26 @@ namespace Fotofilter
 
         private void StartPaint(object sender, MouseEventArgs e)
         {
+            //when holding down mouse on the picturebox
             painting = true;
         }
 
         private void StopPaint(object sender, MouseEventArgs e)
         {
+            //when you let go of the mouse on the picturebox
             painting = false;
-            GetCurrentImage();
+            if (pbBild.Image != null)
+                GetCurrentImage();
 
         }
 
-        private async Task<Bitmap> DrawPaintAsync(MouseEventArgs e)
+        private Bitmap DrawPaint(MouseEventArgs e)
         {
-
+            //the brushsize is the size of the brush when drawing
             int brushSize = 10;
             Bitmap image = new Bitmap(pbBild.Image);
 
+            //draws a 5x5 square
             for (int y = 0; y < brushSize; y++)
             {
                 for (int x = 0; x < brushSize; x++)
@@ -1101,16 +1106,17 @@ namespace Fotofilter
             return image;
         }
 
-        private async void TrackMouse(object sender, MouseEventArgs e)
+        private void TrackMouse(object sender, MouseEventArgs e)
         {
+            //triggers when the mouse moves, feeds the drawpaint function with information about the mouse's location
             if (pbBild.Image != null)
             {
                 if (painting)
                 {
                     //when mouse moves it calls the async drawpaint method
-                    Task<Bitmap> paintImage = DrawPaintAsync(e);
+                   
 
-                    Bitmap image = await paintImage;
+                    Bitmap image = DrawPaint(e);
 
                     pbBild.Image = image;
                 }
@@ -1119,6 +1125,5 @@ namespace Fotofilter
 
         #endregion
 
-        
     }
 }

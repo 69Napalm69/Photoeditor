@@ -42,8 +42,6 @@ namespace Fotofilter
             this.angraAlltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.storlekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.In = new System.Windows.Forms.ToolStripMenuItem();
-            this.Out = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.avslutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -193,28 +191,10 @@ namespace Fotofilter
             // 
             // storlekToolStripMenuItem
             // 
-            this.storlekToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.In,
-            this.Out});
             this.storlekToolStripMenuItem.Name = "storlekToolStripMenuItem";
             this.storlekToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
-            this.storlekToolStripMenuItem.Text = "Size(WIP)";
-            // 
-            // In
-            // 
-            this.In.Name = "In";
-            this.In.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-            this.In.Size = new System.Drawing.Size(271, 26);
-            this.In.Text = "Zoom in";
-            this.In.Click += new System.EventHandler(this.Scale);
-            // 
-            // Out
-            // 
-            this.Out.Name = "Out";
-            this.Out.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
-            this.Out.Size = new System.Drawing.Size(271, 26);
-            this.Out.Text = "Zoom out";
-            this.Out.Click += new System.EventHandler(this.Scale);
+            this.storlekToolStripMenuItem.Text = "Size...(WIP)";
+            this.storlekToolStripMenuItem.Click += new System.EventHandler(this.Scale);
             // 
             // toolStripSeparator3
             // 
@@ -496,15 +476,15 @@ namespace Fotofilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(352, 183);
             this.Controls.Add(this.pbBild);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(370, 70);
             this.Name = "mainForm";
             this.Text = "ImageBoutique";
-            this.Resize += new System.EventHandler(this.ResizeImage);
             ((System.ComponentModel.ISupportInitialize)(this.pbBild)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -548,8 +528,6 @@ namespace Fotofilter
         private System.Windows.Forms.ToolStripMenuItem shadeSortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem colorSortToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem storlekToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem In;
-        private System.Windows.Forms.ToolStripMenuItem Out;
         private System.Windows.Forms.ToolStripMenuItem görOmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brightnessToolStripMenuItem;
