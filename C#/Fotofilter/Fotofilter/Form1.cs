@@ -1125,5 +1125,25 @@ namespace Fotofilter
 
         #endregion
 
+        #region Third-party filters
+        private void JimInvert(object sender, EventArgs e)
+        {
+            Bitmap Image = new Bitmap(pbBild.Image);
+            JimLibrary.Filters.Invert(Image);
+
+            pbBild.Image = Image;
+        }
+
+        private void JimRGGBBRR(object sender, EventArgs e)
+        {
+            Bitmap Image = new Bitmap(pbBild.Image);
+            JimLibrary.Filters.RGGBBR(Image);
+
+            pbBild.Image = Image;
+        }
     }
+
+    #endregion
+
+
 }

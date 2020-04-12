@@ -128,6 +128,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxHeight);
             this.Controls.Add(this.tbxWidth);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Sizer";
             this.ShowInTaskbar = false;
             this.Text = "Size";

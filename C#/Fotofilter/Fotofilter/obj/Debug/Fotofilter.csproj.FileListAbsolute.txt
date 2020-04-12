@@ -23,3 +23,4 @@ C:\Users\gabriel.mattsson\Desktop\Github reposts\PRRPRR\Programmering\C#\Fotofil
 C:\Users\gabriel.mattsson\Desktop\Github reposts\PRRPRR\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.exe
 C:\Users\gabriel.mattsson\Desktop\Github reposts\PRRPRR\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.pdb
 C:\Users\gabriel.mattsson\Desktop\Github reposts\PRRPRR\Programmering\C#\Fotofilter\Fotofilter\obj\Debug\Fotofilter.Sizer.resources
+C:\Users\gabriel.mattsson\Desktop\Github reposts\PRRPRR\Programmering\C#\Fotofilter\Fotofilter\bin\Debug\JimLibrary.dll

@@ -107,6 +107,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(375, 123);
+            this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -117,6 +118,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BrightSlide";
             this.Text = "BrightSlide";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.Brightness)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
