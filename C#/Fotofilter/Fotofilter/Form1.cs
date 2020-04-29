@@ -1000,10 +1000,24 @@ namespace Fotofilter
 
             if (openImage.ShowDialog() == DialogResult.OK)
             {
-                Bitmap picture1 = GetCurrentImage();
-                Bitmap picture2 = new Bitmap(openImage.FileName);
+            
+                Bitmap original = GetCurrentImage();
+                //gets a downscaled version of the new image that is gonna be merged
+                Bitmap image = new Bitmap(new Bitmap(openImage.FileName).GetThumbnailImage(original.Width, original.Height, null, IntPtr.Zero));
 
-                //how do i merge larger images; i need to downsize or enlarge it that means i need to fix the scale function first
+                for (int y = 0; y < original.Height; y++)
+                {
+                    for (int x = 0; x < original.Width; x++)
+                    {
+                        Color tmp1 = original.GetPixel(x,y);
+                        Color tmp2 = image.GetPixel(x,y);
+
+                        original.SetPixel(x, y, Color.FromArgb((tmp1.R + tmp2.R) / 2, (tmp1.G + tmp2.G) / 2, (tmp1.B + tmp2.B) / 2));
+
+                    }
+                }
+
+                pbBild.Image = original;
             }
         }
 

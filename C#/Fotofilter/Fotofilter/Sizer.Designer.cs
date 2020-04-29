@@ -45,7 +45,6 @@
             this.tbxWidth.Name = "tbxWidth";
             this.tbxWidth.Size = new System.Drawing.Size(100, 22);
             this.tbxWidth.TabIndex = 0;
-            this.tbxWidth.TextChanged += new System.EventHandler(this.FilterText);
             this.tbxWidth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterInput);
             // 
             // tbxHeight
@@ -54,7 +53,7 @@
             this.tbxHeight.Name = "tbxHeight";
             this.tbxHeight.Size = new System.Drawing.Size(100, 22);
             this.tbxHeight.TabIndex = 1;
-            this.tbxHeight.TextChanged += new System.EventHandler(this.FilterText);
+            this.tbxHeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterInput);
             // 
             // label1
             // 
