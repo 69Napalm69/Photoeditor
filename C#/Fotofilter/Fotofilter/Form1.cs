@@ -68,7 +68,7 @@ namespace Fotofilter
             if (!hasSaved)
             {
                 //displays a Messagebox asking if you are sure you want to close the program or not, losing the image not having saved it
-                DialogResult exit = MessageBox.Show("Are you sure you want to exit?\r\nContent has not been saved.", "Exit dialog", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult exit = MessageBox.Show("Are you sure you want to exit?\r\nContent has not been saved.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 //if they wanted to close 
                 if (exit == DialogResult.Yes)
                 {
@@ -91,6 +91,17 @@ namespace Fotofilter
 
         private void OpenImage(object sender, EventArgs e)
         {
+            //checks if you saved the image before closing
+            if (!hasSaved)
+            {
+                //displays a Messagebox asking if you are sure you want to close the program or not, losing the image not having saved it
+                DialogResult exit = MessageBox.Show("Are you sure you want to open a new file?\r\nContent has not been saved.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                //if they wanted to close 
+                if (exit == DialogResult.No)
+                {
+                    return;
+                }
+            }
             //Open image function
             if (openImage.ShowDialog() == DialogResult.OK)
             {
@@ -130,7 +141,7 @@ namespace Fotofilter
 
         private void ImageSaveAs(object sender, EventArgs e)
         {
-            
+
             if (saveImage.ShowDialog() == DialogResult.OK)
             {
                 //Available formats: *.BMP; *.JPG; *.GIF,*.PNG,*.TIFF
@@ -240,6 +251,8 @@ namespace Fotofilter
         //tror det kan vara såhär de gör på photoshop när de använder layers
         private void DemonGrainImageFilter(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
 
             //gets the current iamge and other necessities
             Bitmap picture = GetCurrentImage();
@@ -272,6 +285,9 @@ namespace Fotofilter
 
         private void ShadeSortFilter(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             //Problems: When the shades are sorted the heap sort leaves weird artifacting in the image
             //take any image and then sort the pixels by brightness for a cool visualisation
 
@@ -405,6 +421,8 @@ namespace Fotofilter
 
         private void ColorSortFilter(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
             //Problems: Has issues with black so it makes it stick with the red because black has he same hue as red but bottomed brightness
             //take any image and then sort the pixels from red, green and then blue for a cool visualisation
 
@@ -504,6 +522,9 @@ namespace Fotofilter
 
         private void AbsoluteColorFilter(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             //Set every pixel to their absolute RGB color
             Bitmap picture = GetCurrentImage();
             Color[] allPixels = new Color[picture.Width * picture.Height];
@@ -597,6 +618,9 @@ namespace Fotofilter
 
         private void InvertColorFilter(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             Bitmap picture = GetCurrentImage();
             //creates the array and makes it the size of the amount of pixels
             Color[] allPixels = new Color[picture.Width * picture.Height];
@@ -629,6 +653,8 @@ namespace Fotofilter
 
         private void ColorSet(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
 
             Bitmap picture = GetCurrentImage();
             //creates the array with the size of all pixels
@@ -728,6 +754,8 @@ namespace Fotofilter
 
         private void MonochromeColorFilter(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
 
             Bitmap picture = GetCurrentImage();
             //creates the array at the size of the amount of pixels
@@ -765,6 +793,8 @@ namespace Fotofilter
 
         private void GrainImageFilter(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
 
             Bitmap picture = GetCurrentImage();
             //creates the array with the size of the amount of pixels
@@ -806,6 +836,9 @@ namespace Fotofilter
 
         private void ColorRemove(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             Bitmap picture = GetCurrentImage();
             //creates an array with the size of the amount of pixels
             Color[] allPixels = new Color[picture.Width * picture.Height];
@@ -882,6 +915,9 @@ namespace Fotofilter
 
         private void BlurImageFilter(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             //Bugs: image shifts to the bottom right corner after every blur
 
             Bitmap picture = new Bitmap(pbBild.Image);
@@ -959,6 +995,9 @@ namespace Fotofilter
 
         private void MergeImage(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             if (openImage.ShowDialog() == DialogResult.OK)
             {
                 Bitmap picture1 = GetCurrentImage();
@@ -970,16 +1009,20 @@ namespace Fotofilter
 
         private void ChangeBrightness(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
 
             //detta är lossy om man maxar rgb värdet vilket betyder att om man vill ha lossless så måste man sätta filter på lager, alltså man har en queue med filter som utförs på rad
 
             BrightSlide.ShowDialog();
 
-            Bitmap picture = GetCurrentImage();
-            Color[,] pixelArray = new Color[picture.Width, picture.Height];
 
             if (BrightSlide.DialogResult == DialogResult.OK)
             {
+                Bitmap picture = GetCurrentImage();
+
+                Color[,] pixelArray = new Color[picture.Width, picture.Height];
+
                 //make brighter
                 int howBright = BrightSlide.Value;
 
@@ -1008,6 +1051,9 @@ namespace Fotofilter
 
         private void Scale(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             currentHeight = pbBild.Image.Height;
             currentWidth = pbBild.Image.Width;
             if (SizeMenu.ShowDialog() == DialogResult.OK)
@@ -1114,7 +1160,7 @@ namespace Fotofilter
                 if (painting)
                 {
                     //when mouse moves it calls the async drawpaint method
-                   
+
 
                     Bitmap image = DrawPaint(e);
 
@@ -1128,6 +1174,9 @@ namespace Fotofilter
         #region Third-party filters
         private void JimInvert(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             Bitmap Image = new Bitmap(pbBild.Image);
             JimLibrary.Filters.Invert(Image);
 
@@ -1136,6 +1185,9 @@ namespace Fotofilter
 
         private void JimRGGBBRR(object sender, EventArgs e)
         {
+            if (pbBild.Image == null)
+                return;
+
             Bitmap Image = new Bitmap(pbBild.Image);
             JimLibrary.Filters.RGGBBR(Image);
 

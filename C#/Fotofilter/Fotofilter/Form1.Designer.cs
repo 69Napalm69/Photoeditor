@@ -37,12 +37,6 @@ namespace Fotofilter
             this.sparaBildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveToClipboard = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ångraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.görOmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.angraAlltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.storlekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.avslutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorFitlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +69,7 @@ namespace Fotofilter
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.thirdPartyFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jimRGGBBRRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawColorSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.drawToolStripMenuItem1 = new System.Windows.Forms.ToolStripTextBox();
@@ -82,7 +77,12 @@ namespace Fotofilter
             this.openImage = new System.Windows.Forms.OpenFileDialog();
             this.saveImage = new System.Windows.Forms.SaveFileDialog();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
-            this.jimRGGBBRRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.pbBild)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -104,13 +104,14 @@ namespace Fotofilter
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.arkivToolStripMenuItem,
+            this.editToolStripMenuItem,
             this.filterToolStripMenuItem,
             this.drawToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(352, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(482, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -121,12 +122,6 @@ namespace Fotofilter
             this.sparaBildToolStripMenuItem,
             this.SaveToClipboard,
             this.toolStripSeparator1,
-            this.ångraToolStripMenuItem,
-            this.görOmToolStripMenuItem,
-            this.angraAlltToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.storlekToolStripMenuItem,
-            this.toolStripSeparator3,
             this.avslutaToolStripMenuItem});
             this.arkivToolStripMenuItem.Name = "arkivToolStripMenuItem";
             this.arkivToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
@@ -161,49 +156,6 @@ namespace Fotofilter
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(283, 6);
-            // 
-            // ångraToolStripMenuItem
-            // 
-            this.ångraToolStripMenuItem.Name = "ångraToolStripMenuItem";
-            this.ångraToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.ångraToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
-            this.ångraToolStripMenuItem.Text = "Undo";
-            this.ångraToolStripMenuItem.Click += new System.EventHandler(this.Undo);
-            // 
-            // görOmToolStripMenuItem
-            // 
-            this.görOmToolStripMenuItem.Name = "görOmToolStripMenuItem";
-            this.görOmToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.görOmToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
-            this.görOmToolStripMenuItem.Text = "Redo";
-            this.görOmToolStripMenuItem.Click += new System.EventHandler(this.Redo);
-            // 
-            // angraAlltToolStripMenuItem
-            // 
-            this.angraAlltToolStripMenuItem.Name = "angraAlltToolStripMenuItem";
-            this.angraAlltToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-            | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.Z)));
-            this.angraAlltToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
-            this.angraAlltToolStripMenuItem.Text = "Undo all";
-            this.angraAlltToolStripMenuItem.Click += new System.EventHandler(this.ResetImage);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(283, 6);
-            // 
-            // storlekToolStripMenuItem
-            // 
-            this.storlekToolStripMenuItem.Name = "storlekToolStripMenuItem";
-            this.storlekToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
-            this.storlekToolStripMenuItem.Text = "Size...(WIP)";
-            this.storlekToolStripMenuItem.Click += new System.EventHandler(this.Scale);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(283, 6);
             // 
             // avslutaToolStripMenuItem
             // 
@@ -462,9 +414,16 @@ namespace Fotofilter
             // jimToolStripMenuItem
             // 
             this.jimToolStripMenuItem.Name = "jimToolStripMenuItem";
-            this.jimToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.jimToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
             this.jimToolStripMenuItem.Text = "Jim - Invert";
             this.jimToolStripMenuItem.Click += new System.EventHandler(this.JimInvert);
+            // 
+            // jimRGGBBRRToolStripMenuItem
+            // 
+            this.jimRGGBBRRToolStripMenuItem.Name = "jimRGGBBRRToolStripMenuItem";
+            this.jimRGGBBRRToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.jimRGGBBRRToolStripMenuItem.Text = "Jim - RGGBBRR";
+            this.jimRGGBBRRToolStripMenuItem.Click += new System.EventHandler(this.JimRGGBBRR);
             // 
             // drawToolStripMenuItem
             // 
@@ -499,12 +458,55 @@ namespace Fotofilter
             // 
             this.saveImage.RestoreDirectory = true;
             // 
-            // jimRGGBBRRToolStripMenuItem
+            // editToolStripMenuItem
             // 
-            this.jimRGGBBRRToolStripMenuItem.Name = "jimRGGBBRRToolStripMenuItem";
-            this.jimRGGBBRRToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.jimRGGBBRRToolStripMenuItem.Text = "Jim - RGGBBRR";
-            this.jimRGGBBRRToolStripMenuItem.Click += new System.EventHandler(this.JimRGGBBRR);
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripSeparator2,
+            this.toolStripMenuItem4});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(268, 26);
+            this.toolStripMenuItem1.Text = "Undo";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.Undo);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(268, 26);
+            this.toolStripMenuItem2.Text = "Redo";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.Redo);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.Z)));
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(268, 26);
+            this.toolStripMenuItem3.Text = "Undo all";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.ResetImage);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(268, 26);
+            this.toolStripMenuItem4.Text = "Size...";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.Scale);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(265, 6);
             // 
             // mainForm
             // 
@@ -512,7 +514,7 @@ namespace Fotofilter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(352, 183);
+            this.ClientSize = new System.Drawing.Size(482, 183);
             this.Controls.Add(this.pbBild);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -543,7 +545,6 @@ namespace Fotofilter
         private System.Windows.Forms.ToolStripMenuItem RemoveBlue;
         private System.Windows.Forms.ToolStripMenuItem sparaBildToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveImage;
-        private System.Windows.Forms.ToolStripMenuItem angraAlltToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem experimentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem invertToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem colorReplaceToolStripMenuItem;
@@ -561,8 +562,6 @@ namespace Fotofilter
         private System.Windows.Forms.ToolStripMenuItem grainToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem shadeSortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem colorSortToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem storlekToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem görOmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brightnessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem blurToolStripMenuItem;
@@ -570,9 +569,6 @@ namespace Fotofilter
         private System.Windows.Forms.ToolStripMenuItem drawToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem drawColorSelection;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem ångraToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem pictureMergeToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox drawToolStripMenuItem1;
@@ -581,6 +577,12 @@ namespace Fotofilter
         private System.Windows.Forms.ToolStripMenuItem thirdPartyFiltersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jimToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jimRGGBBRRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
     }
 }
 
