@@ -36,7 +36,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // tbxWidth
@@ -45,7 +44,6 @@
             this.tbxWidth.Name = "tbxWidth";
             this.tbxWidth.Size = new System.Drawing.Size(100, 22);
             this.tbxWidth.TabIndex = 0;
-            this.tbxWidth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterInput);
             // 
             // tbxHeight
             // 
@@ -53,7 +51,6 @@
             this.tbxHeight.Name = "tbxHeight";
             this.tbxHeight.Size = new System.Drawing.Size(100, 22);
             this.tbxHeight.TabIndex = 1;
-            this.tbxHeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterInput);
             // 
             // label1
             // 
@@ -113,17 +110,6 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Pixels";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(75, 8);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(139, 21);
-            this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "Keep proportions";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // Sizer
             // 
             this.AcceptButton = this.button1;
@@ -133,7 +119,6 @@
             this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(240, 154);
             this.ControlBox = false;
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
@@ -163,6 +148,5 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

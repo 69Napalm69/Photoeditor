@@ -39,6 +39,10 @@ namespace Fotofilter
         public static int currentWidth;
         public static int currentHeight;
 
+        //the menu for taking snapshots
+        ScreenShot ScreenShot = new ScreenShot();
+
+
         public mainForm()
         {
             InitializeComponent();
@@ -115,6 +119,32 @@ namespace Fotofilter
                 pbBild.Width = OriginalImage.Width;
                 pbBild.Height = OriginalImage.Height;
             }
+        }
+
+        private void TakePicture(object sender, EventArgs e)
+        {
+            //checks if you saved the image before taking a screenshot
+            if (!hasSaved)
+            {
+                //displays a Messagebox asking if you are sure you want to take a snapshot the program or not, losing the image not having saved it
+                DialogResult exit = MessageBox.Show("Are you sure you want to take a new picture?\r\nContent has not been saved.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                //if they wanted to close 
+                if (exit == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            //everything is quite unstable
+            if (ScreenShot.ShowDialog() == DialogResult.OK)
+            {
+                pbBild.Height = ScreenShot.snapshot.Height;
+                pbBild.Width = ScreenShot.snapshot.Width;
+                pbBild.Image = ScreenShot.snapshot;
+                editHistory.Clear();
+                editHistory.Add(new Bitmap(pbBild.Image));
+                OriginalImage = new Bitmap(pbBild.Image);
+            }
+
         }
 
         private Bitmap GetCurrentImage()
@@ -920,7 +950,7 @@ namespace Fotofilter
 
             //Bugs: image shifts to the bottom right corner after every blur
 
-            Bitmap picture = new Bitmap(pbBild.Image);
+            Bitmap picture = GetCurrentImage();
             Color[,] pixelArray = new Color[picture.Width, picture.Height];
 
             int blurSize = 4;
@@ -1000,7 +1030,7 @@ namespace Fotofilter
 
             if (openImage.ShowDialog() == DialogResult.OK)
             {
-            
+
                 Bitmap original = GetCurrentImage();
                 //gets a downscaled version of the new image that is gonna be merged
                 Bitmap image = new Bitmap(new Bitmap(openImage.FileName).GetThumbnailImage(original.Width, original.Height, null, IntPtr.Zero));
@@ -1009,8 +1039,8 @@ namespace Fotofilter
                 {
                     for (int x = 0; x < original.Width; x++)
                     {
-                        Color tmp1 = original.GetPixel(x,y);
-                        Color tmp2 = image.GetPixel(x,y);
+                        Color tmp1 = original.GetPixel(x, y);
+                        Color tmp2 = image.GetPixel(x, y);
 
                         original.SetPixel(x, y, Color.FromArgb((tmp1.R + tmp2.R) / 2, (tmp1.G + tmp2.G) / 2, (tmp1.B + tmp2.B) / 2));
 
@@ -1207,9 +1237,12 @@ namespace Fotofilter
 
             pbBild.Image = Image;
         }
+
+        #endregion
+
+        
     }
 
-    #endregion
 
 
 }
